@@ -81,7 +81,10 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Brands"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -113,7 +116,10 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Brands"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -147,7 +153,10 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Brands"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
      *          responses:
      *              200:
      *                  description: The list of the brands
