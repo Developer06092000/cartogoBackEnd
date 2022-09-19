@@ -1,3 +1,5 @@
+const verifyToken = require("../controllers/verifyToken.js");
+
 module.exports = (app) => {
     const Categories = require("../controllers/Categories.js");
     var router = require("express").Router();
@@ -191,20 +193,11 @@ module.exports = (app) => {
      *                  description: Some server error
      */
 
-    // Create a new Tutorial
-    router.post("/", Categories.create);
-    // Retrieve all Tutorials
+    router.post("/", verifyToken, Categories.create);
     router.get("/", Categories.findAll);
-    // Retrieve all published Tutorials
-    // router.get("/published", Categories.findAllPublished);
-    // Retrieve a single Tutorial with id
     router.get("/:id/", Categories.findOne);
-    // Update a Tutorial with id
-    router.put("/:id/", Categories.update);
-    router.patch("/:id/", Categories.update);
-    // Delete a Tutorial with id
-    router.delete("/:id/", Categories.delete);
-    // Delete all Tutorials
-    // router.delete("/", Categories.deleteAll);
+    router.put("/:id/", verifyToken, Categories.update);
+    router.patch("/:id/", verifyToken, Categories.update);
+    router.delete("/:id/", verifyToken, Categories.delete);
     app.use("/categories", router);
 };

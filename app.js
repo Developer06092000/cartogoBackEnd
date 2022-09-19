@@ -45,6 +45,7 @@ require("./app/routes/Brands.js")(app);
 require("./app/routes/Categories.js")(app);
 require("./app/routes/Cars.js")(app);
 require("./app/routes/Orders.js")(app);
+require("./app/routes/auth.js")(app);
 
 app.listen(8080, () => {
     console.log(`Server is running on port http://localhost:8080`);

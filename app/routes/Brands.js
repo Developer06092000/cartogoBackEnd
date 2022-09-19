@@ -1,3 +1,5 @@
+const verifyToken = require("../controllers/verifyToken.js");
+
 module.exports = (app) => {
     const Brands = require("../controllers/Brands.js");
     var router = require("express").Router();
@@ -202,11 +204,9 @@ module.exports = (app) => {
 
     router.get("/", Brands.findAll);
     router.get("/:id/", Brands.findOne);
-    router.post("/", Brands.create);
-    // router.get("/published", Brands.findAllPublished);
-    router.put("/:id/", Brands.update);
-    router.patch("/:id/", Brands.update);
-    router.delete("/:id/", Brands.delete);
-    // router.delete("/", Brands.deleteAll);
+    router.post("/", verifyToken, Brands.create);
+    router.put("/:id/", verifyToken, Brands.update);
+    router.patch("/:id/", verifyToken, Brands.update);
+    router.delete("/:id/", verifyToken, Brands.delete);
     app.use("/brands", router);
 };

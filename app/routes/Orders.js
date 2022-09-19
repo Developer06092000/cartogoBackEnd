@@ -1,3 +1,5 @@
+const verifyToken = require("../controllers/verifyToken.js");
+
 module.exports = (app) => {
     const Orders = require("../controllers/Orders.js");
     var router = require("express").Router();
@@ -35,7 +37,7 @@ module.exports = (app) => {
      *                      description: The order description
      *              example:
      *                  id: 123
-     *                  name: Cars
+     *                  name: John
      *                  email: info@gmail.com
      *                  phone: +998991234567
      *                  answered: false
@@ -47,7 +49,7 @@ module.exports = (app) => {
     /**
      * @swagger
      *     tags:
-     *          name: Cars
+     *          name: Orders
      *          description: The orders managing API
      */
 
@@ -98,7 +100,7 @@ module.exports = (app) => {
      * @swagger
      *  /orders:
      *      post:
-     *          summary: Create a new car
+     *          summary: Create a new order
      *          tags: [Orders]
      *          requestBody:
      *              required: true
@@ -215,20 +217,11 @@ module.exports = (app) => {
      *                  description: Some server error
      */
 
-    // Create a new Tutorial
-    router.post("/", Orders.create);
-    // Retrieve all Tutorials
+    router.post("/", verifyToken, Orders.create);
     router.get("/", Orders.findAll);
-    // Retrieve all published Tutorials
-    // router.get("/published", Orders.findAllPublished);
-    // Retrieve a single Tutorial with id
     router.get("/:id/", Orders.findOne);
-    // Update a Tutorial with id
-    router.put("/:id/", Orders.update);
-    router.patch("/:id/", Orders.update);
-    // Delete a Tutorial with id
-    router.delete("/:id/", Orders.delete);
-    // Delete all Tutorials
-    // router.delete("/", Orders.deleteAll);
+    router.put("/:id/", verifyToken, Orders.update);
+    router.patch("/:id/", verifyToken, Orders.update);
+    router.delete("/:id/", verifyToken, Orders.delete);
     app.use("/orders", router);
 };
