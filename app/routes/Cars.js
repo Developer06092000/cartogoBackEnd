@@ -111,7 +111,32 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Cars"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The car name
+     *                              doors:
+     *                                  type: integer
+     *                                  description: The car doors
+     *                              seats:
+     *                                  type: integer
+     *                                  description: The car seats
+     *                              buggage:
+     *                                  type: integer
+     *                                  description: The car buggage
+     *                              fuel:
+     *                                  type: string
+     *                                  description: The car fuel
+     *                              price:
+     *                                  type: integer
+     *                                  description: The car price
+     *                              brandId:
+     *                                  type: integer
+     *                                  description: The car brandId
+     *                              categoryId:
+     *                                  type: integer
+     *                                  description: The car categoryId
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -143,7 +168,32 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Cars"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The car name
+     *                              doors:
+     *                                  type: integer
+     *                                  description: The car doors
+     *                              seats:
+     *                                  type: integer
+     *                                  description: The car seats
+     *                              buggage:
+     *                                  type: integer
+     *                                  description: The car buggage
+     *                              fuel:
+     *                                  type: string
+     *                                  description: The car fuel
+     *                              price:
+     *                                  type: integer
+     *                                  description: The car price
+     *                              brandId:
+     *                                  type: integer
+     *                                  description: The car brandId
+     *                              categoryId:
+     *                                  type: integer
+     *                                  description: The car categoryId
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -177,7 +227,32 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Cars"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The car name
+     *                              doors:
+     *                                  type: integer
+     *                                  description: The car doors
+     *                              seats:
+     *                                  type: integer
+     *                                  description: The car seats
+     *                              buggage:
+     *                                  type: integer
+     *                                  description: The car buggage
+     *                              fuel:
+     *                                  type: string
+     *                                  description: The car fuel
+     *                              price:
+     *                                  type: integer
+     *                                  description: The car price
+     *                              brandId:
+     *                                  type: integer
+     *                                  description: The car brandId
+     *                              categoryId:
+     *                                  type: integer
+     *                                  description: The car categoryId
      *          responses:
      *              200:
      *                  description: The list of the cars
