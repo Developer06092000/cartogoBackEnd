@@ -107,8 +107,38 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Orders"
-     *          responses:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The order name
+     *                              email:
+     *                                  type: string
+     *                                  description: The order email
+     *                              phone:
+     *                                  type: string
+     *                                  description: The order phone
+     *                              answered:
+     *                                  type: boolean
+     *                                  description: The order answered
+     *                              telegramId:
+     *                                  type: integer
+     *                                  description: The order telegramId
+     *                              carId:
+     *                                  type: integer
+     *                                  description: The order carId
+     *                              description:
+     *                                  type: integer
+     *                                  description: The order description
+     *                          example:
+     *                              name: ""
+     *                              email: info@gmail.com
+     *                              phone: +998991234567
+     *                              answered: false
+     *                              telegramId: null
+     *                              carId: null
+     *                              description: ""
+     *          respon:
      *              200:
      *                  description: The list of the orders
      *                  content:
@@ -135,11 +165,40 @@ module.exports = (app) => {
      *              required: true
      *              description: The order id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Orders"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The order name
+     *                              email:
+     *                                  type: string
+     *                                  description: The order email
+     *                              phone:
+     *                                  type: string
+     *                                  description: The order phone
+     *                              answered:
+     *                                  type: boolean
+     *                                  description: The order answered
+     *                              telegramId:
+     *                                  type: integer
+     *                                  description: The order telegramId
+     *                              carId:
+     *                                  type: integer
+     *                                  description: The order carId
+     *                              description:
+     *                                  type: integer
+     *                                  description: The order description
+     *                          example:
+     *                              name: ""
+     *                              email: info@gmail.com
+     *                              phone: +998991234567
+     *                              answered: false
+     *                              telegramId: null
+     *                              carId: null
+     *                              description: ""
      *          responses:
      *              200:
      *                  description: The list of the orders
@@ -169,11 +228,40 @@ module.exports = (app) => {
      *              required: true
      *              description: The order id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Orders"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The order name
+     *                              email:
+     *                                  type: string
+     *                                  description: The order email
+     *                              phone:
+     *                                  type: string
+     *                                  description: The order phone
+     *                              answered:
+     *                                  type: boolean
+     *                                  description: The order answered
+     *                              telegramId:
+     *                                  type: integer
+     *                                  description: The order telegramId
+     *                              carId:
+     *                                  type: integer
+     *                                  description: The order carId
+     *                              description:
+     *                                  type: integer
+     *                                  description: The order description
+     *                          example:
+     *                              name: ""
+     *                              email: info@gmail.com
+     *                              phone: +998991234567
+     *                              answered: false
+     *                              telegramId: null
+     *                              carId: null
+     *                              description: ""
      *          responses:
      *              200:
      *                  description: The list of the orders

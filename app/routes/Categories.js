@@ -19,7 +19,7 @@ module.exports = (app) => {
      *                      description: The category name
      *              example:
      *                  id: 123
-     *                  name: Brand
+     *                  name: Category
      */
 
     /**
@@ -83,7 +83,13 @@ module.exports = (app) => {
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Categories"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The category name
+     *                              example:
+     *                                  name: ""
      *          responses:
      *              200:
      *                  description: The list of the categories
@@ -111,11 +117,16 @@ module.exports = (app) => {
      *              required: true
      *              description: The category id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Categories"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The category name
+     *                              example:
+     *                                  name: ""
      *          responses:
      *              200:
      *                  description: The list of the categories
@@ -145,11 +156,16 @@ module.exports = (app) => {
      *              required: true
      *              description: The category id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
-     *                          $ref: "#/components/schemas/Categories"
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The category name
+     *                              example:
+     *                                  name: ""
      *          responses:
      *              200:
      *                  description: The list of the categories

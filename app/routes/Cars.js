@@ -137,6 +137,15 @@ module.exports = (app) => {
      *                              categoryId:
      *                                  type: integer
      *                                  description: The car categoryId
+     *                          example:
+     *                              name: ""
+     *                              doors: null
+     *                              seats: null
+     *                              buggage: null
+     *                              fuel: gasoline
+     *                              price: null
+     *                              brandId: null
+     *                              categoryId: null
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -194,6 +203,15 @@ module.exports = (app) => {
      *                              categoryId:
      *                                  type: integer
      *                                  description: The car categoryId
+     *                          example:
+     *                              name: ""
+     *                              doors: null
+     *                              seats: null
+     *                              buggage: null
+     *                              fuel: gasoline
+     *                              price: null
+     *                              brandId: null
+     *                              categoryId: null
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -253,6 +271,15 @@ module.exports = (app) => {
      *                              categoryId:
      *                                  type: integer
      *                                  description: The car categoryId
+     *                          example:
+     *                              name: ""
+     *                              doors: null
+     *                              seats: null
+     *                              buggage: null
+     *                              fuel: gasoline
+     *                              price: null
+     *                              brandId: null
+     *                              categoryId: null
      *          responses:
      *              200:
      *                  description: The list of the cars

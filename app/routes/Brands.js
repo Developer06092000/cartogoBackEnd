@@ -87,6 +87,8 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
+     *                          example:
+     *                              name: ""
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -122,6 +124,8 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
+     *                          example:
+     *                              name: ""
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -159,6 +163,8 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
+     *                          example:
+     *                              name: ""
      *          responses:
      *              200:
      *                  description: The list of the brands
