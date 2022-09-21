@@ -138,7 +138,7 @@ module.exports = (app) => {
      *                              telegramId: null
      *                              carId: null
      *                              description: ""
-     *          respon:
+     *          responses:
      *              200:
      *                  description: The list of the orders
      *                  content:
