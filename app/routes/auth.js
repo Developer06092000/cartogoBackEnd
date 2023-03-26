@@ -1,4 +1,4 @@
-const verifyToken = require("../controllers/verifyToken.js");
+const verifyToken = require("../middleware/verifyToken.js");
 
 module.exports = (app) => {
     const Users = require("../controllers/auth.js");
@@ -53,20 +53,25 @@ module.exports = (app) => {
      *                          properties:
      *                              username:
      *                                  type: string
+     *                                  description: Enter the username
      *                              email:
      *                                  type: string
      *                                  format: email
+     *                                  description: Enter the email
      *                              password:
      *                                  type: string
+     *                                  description: Enter the password
+     *                          example:
+     *                              username: ""
+     *                              email: ""
+     *                              password: ""
      *          responses:
      *              200:
      *                  description: The list of the users
      *                  content:
      *                      application/json:
      *                          schema:
-     *                              type: object
-     *                              items:
-     *                                  $ref: "#/components/schemas/Users"
+     *                              type: string
      *              500:
      *                  description: Some server error
      */
@@ -75,7 +80,7 @@ module.exports = (app) => {
      * @swagger
      *  /auth/login/:
      *      post:
-     *          summary: Create a new user
+     *          summary: Logging the user
      *          tags: [Users]
      *          requestBody:
      *              required: true
@@ -86,9 +91,13 @@ module.exports = (app) => {
      *                          properties:
      *                              username:
      *                                  type: string
-     *                                  value: ""
+     *                                  description: Enter the username
      *                              password:
      *                                  type: string
+     *                                  description: Enter the password
+     *                          example:
+     *                              username: ""
+     *                              password: ""
      *          responses:
      *              200:
      *                  description: The list of the users
@@ -110,6 +119,8 @@ module.exports = (app) => {
      *      post:
      *          summary: Change user password
      *          tags: [Users]
+     *          required: true
+     *          description: Enter the token
      *          requestBody:
      *              required: true
      *              content:
@@ -119,15 +130,14 @@ module.exports = (app) => {
      *                          properties:
      *                              password:
      *                                  type: string
+     *                                  example: ""
      *          responses:
      *              200:
      *                  description: The list of the users
      *                  content:
      *                      application/json:
      *                          schema:
-     *                              type: object
-     *                              items:
-     *                                  $ref: "#/components/schemas/Users"
+     *                              type: string
      *              500:
      *                  description: Some server error
      */

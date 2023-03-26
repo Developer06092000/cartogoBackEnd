@@ -28,6 +28,7 @@ exports.create = (req, res) => {
                         from: config.email,
                         to: req.body.email,
                         subject: "Sending Email using Node.js",
+                        // html: `<button><a href="https://developer0609-carto-go-nodejs.herokuapp.com/auth/verify/?token=${token}">Active Link</a></button>`,
                         html: `<button><a href="http://localhost:8080/auth/verify/?token=${token}">Active Link</a></button>`,
                     };
 

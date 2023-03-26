@@ -30,6 +30,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             defaultValue: null,
         },
+        image: {
+            type: Sequelize.STRING,
+            defaultValue: "",
+        },
     });
     return Cars;
 };

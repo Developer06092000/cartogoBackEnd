@@ -1,4 +1,5 @@
-const verifyToken = require("../controllers/verifyToken.js");
+const uploadFile = require("../middleware/image.js");
+const verifyToken = require("../middleware/verifyToken.js");
 
 module.exports = (app) => {
     const Cars = require("../controllers/Cars.js");
@@ -106,16 +107,21 @@ module.exports = (app) => {
      *      post:
      *          summary: Create a new car
      *          tags: [Cars]
+     *          security:
+     *              - bearerAuth: []
      *          requestBody:
      *              required: true
      *              content:
-     *                  application/json:
+     *                  multipart/form-data:
      *                      schema:
      *                          type: object
      *                          properties:
      *                              name:
      *                                  type: string
      *                                  description: The car name
+     *                              image:
+     *                                  type: file
+     *                                  description: The car image
      *                              doors:
      *                                  type: integer
      *                                  description: The car doors
@@ -139,6 +145,7 @@ module.exports = (app) => {
      *                                  description: The car categoryId
      *                          example:
      *                              name: ""
+     *                              image: null
      *                              doors: null
      *                              seats: null
      *                              buggage: null
@@ -165,6 +172,8 @@ module.exports = (app) => {
      *      put:
      *          summary: Update the car by id
      *          tags: [Cars]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -173,7 +182,6 @@ module.exports = (app) => {
      *              required: true
      *              description: The car id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
@@ -212,6 +220,37 @@ module.exports = (app) => {
      *                              price: null
      *                              brandId: null
      *                              categoryId: null
+     *                  multipart/form-data:
+     *                      schema:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The car name
+     *                              image:
+     *                                  type: file
+     *                                  description: The car image
+     *                              doors:
+     *                                  type: integer
+     *                                  description: The car doors
+     *                              seats:
+     *                                  type: integer
+     *                                  description: The car seats
+     *                              buggage:
+     *                                  type: integer
+     *                                  description: The car buggage
+     *                              fuel:
+     *                                  type: string
+     *                                  description: The car fuel
+     *                              price:
+     *                                  type: integer
+     *                                  description: The car price
+     *                              brandId:
+     *                                  type: integer
+     *                                  description: The car brandId
+     *                              categoryId:
+     *                                  type: integer
+     *                                  description: The car categoryId
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -233,6 +272,8 @@ module.exports = (app) => {
      *      patch:
      *          summary: Update the car by id
      *          tags: [Cars]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -241,7 +282,6 @@ module.exports = (app) => {
      *              required: true
      *              description: The car id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
@@ -280,6 +320,37 @@ module.exports = (app) => {
      *                              price: null
      *                              brandId: null
      *                              categoryId: null
+     *                  multipart/form-data:
+     *                      schema:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The car name
+     *                              image:
+     *                                  type: file
+     *                                  description: The car image
+     *                              doors:
+     *                                  type: integer
+     *                                  description: The car doors
+     *                              seats:
+     *                                  type: integer
+     *                                  description: The car seats
+     *                              buggage:
+     *                                  type: integer
+     *                                  description: The car buggage
+     *                              fuel:
+     *                                  type: string
+     *                                  description: The car fuel
+     *                              price:
+     *                                  type: integer
+     *                                  description: The car price
+     *                              brandId:
+     *                                  type: integer
+     *                                  description: The car brandId
+     *                              categoryId:
+     *                                  type: integer
+     *                                  description: The car categoryId
      *          responses:
      *              200:
      *                  description: The list of the cars
@@ -301,6 +372,8 @@ module.exports = (app) => {
      *      delete:
      *          summary: Remove the car by id
      *          tags: [Cars]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -325,9 +398,9 @@ module.exports = (app) => {
 
     router.get("/", Cars.findAll);
     router.get("/:id/", Cars.findOne);
-    router.post("/", verifyToken, Cars.create);
-    router.put("/:id/", verifyToken, Cars.update);
-    router.patch("/:id/", verifyToken, Cars.update);
+    router.post("/", verifyToken, uploadFile.single("image"), Cars.create);
+    router.put("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
+    router.patch("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
     router.delete("/:id/", verifyToken, Cars.delete);
     app.use("/cars", router);
 };

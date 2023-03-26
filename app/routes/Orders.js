@@ -1,4 +1,4 @@
-const verifyToken = require("../controllers/verifyToken.js");
+const verifyToken = require("../middleware/verifyToken.js");
 
 module.exports = (app) => {
     const Orders = require("../controllers/Orders.js");
@@ -102,6 +102,8 @@ module.exports = (app) => {
      *      post:
      *          summary: Create a new order
      *          tags: [Orders]
+     *          security:
+     *              - bearerAuth: []
      *          requestBody:
      *              required: true
      *              content:
@@ -157,6 +159,8 @@ module.exports = (app) => {
      *      put:
      *          summary: Update the order by id
      *          tags: [Orders]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -220,6 +224,8 @@ module.exports = (app) => {
      *      patch:
      *          summary: Update the order by id
      *          tags: [Orders]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -283,6 +289,8 @@ module.exports = (app) => {
      *      delete:
      *          summary: Remove the order by id
      *          tags: [Orders]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id

@@ -1,4 +1,5 @@
-const verifyToken = require("../controllers/verifyToken.js");
+const uploadFile = require("../middleware/image.js");
+const verifyToken = require("../middleware/verifyToken.js");
 
 module.exports = (app) => {
     const Brands = require("../controllers/Brands.js");
@@ -17,9 +18,13 @@ module.exports = (app) => {
      *                  name:
      *                      type: string
      *                      description: The brand name
+     *                  image:
+     *                      type: string
+     *                      description: The brand image url
      *              example:
      *                  id: 123
      *                  name: Brand
+     *                  image: url
      */
 
     /**
@@ -78,6 +83,8 @@ module.exports = (app) => {
      *      post:
      *          summary: Create a new brand
      *          tags: [Brands]
+     *          security:
+     *              - bearerAuth: []
      *          requestBody:
      *              required: true
      *              content:
@@ -87,8 +94,20 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
-     *                          example:
-     *                              name: ""
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: string
+     *                                  description: The brand image url
+     *                  multipart/form-data:
+     *                      schema:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: file
+     *                                  description: The brand image url
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -108,6 +127,8 @@ module.exports = (app) => {
      *      put:
      *          summary: Update the brand by id
      *          tags: [Brands]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -116,7 +137,6 @@ module.exports = (app) => {
      *              required: true
      *              description: The brand id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
@@ -124,8 +144,20 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
-     *                          example:
-     *                              name: ""
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: string
+     *                                  description: The brand image url
+     *                  multipart/form-data:
+     *                      schema:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: file
+     *                                  description: The brand image url
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -147,6 +179,8 @@ module.exports = (app) => {
      *      patch:
      *          summary: Update the brand by id
      *          tags: [Brands]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -155,7 +189,6 @@ module.exports = (app) => {
      *              required: true
      *              description: The brand id
      *          requestBody:
-     *              required: true
      *              content:
      *                  application/json:
      *                      schema:
@@ -163,8 +196,20 @@ module.exports = (app) => {
      *                          properties:
      *                              name:
      *                                  type: string
-     *                          example:
-     *                              name: ""
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: string
+     *                                  description: The brand image url
+     *                  multipart/form-data:
+     *                      schema:
+     *                          type: object
+     *                          properties:
+     *                              name:
+     *                                  type: string
+     *                                  description: The brand name
+     *                              image:
+     *                                  type: file
+     *                                  description: The brand image url
      *          responses:
      *              200:
      *                  description: The list of the brands
@@ -186,6 +231,8 @@ module.exports = (app) => {
      *      delete:
      *          summary: Remove the brand by id
      *          tags: [Brands]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -210,9 +257,9 @@ module.exports = (app) => {
 
     router.get("/", Brands.findAll);
     router.get("/:id/", Brands.findOne);
-    router.post("/", verifyToken, Brands.create);
-    router.put("/:id/", verifyToken, Brands.update);
-    router.patch("/:id/", verifyToken, Brands.update);
+    router.post("/", verifyToken, uploadFile.single("image"), Brands.create);
+    router.put("/:id/", verifyToken, uploadFile.single("image"), Brands.update);
+    router.patch("/:id/", verifyToken, uploadFile.single("image"), Brands.update);
     router.delete("/:id/", verifyToken, Brands.delete);
     app.use("/brands", router);
 };

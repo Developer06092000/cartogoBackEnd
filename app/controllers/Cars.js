@@ -11,28 +11,36 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    Cars.create({
-        name: req.body.name,
-        doors: req.body.doors,
-        seats: req.body.seats,
-        buggage: req.body.buggage,
-        fuel: req.body.fuel,
-        price: req.body.price,
-        brandId: req.body.brandId,
-        categoryId: req.body.categoryId,
-    })
-        .then((res1) => {
-            Cars.findByPk(res1.id)
-                .then((res2) => {
-                    res.send(res2);
-                })
-                .catch((err2) => {
-                    res.send(err2);
-                });
+    try {
+        if (req.file == undefined) {
+            return res.send(`You must select a file.`);
+        }
+        Cars.create({
+            image: req.file.path,
+            name: req.body.name,
+            doors: req.body.doors,
+            seats: req.body.seats,
+            buggage: req.body.buggage,
+            fuel: req.body.fuel,
+            price: req.body.price,
+            brandId: req.body.brandId,
+            categoryId: req.body.categoryId,
         })
-        .catch((err) => {
-            res.send(err);
-        });
+            .then((res1) => {
+                Cars.findByPk(res1.id)
+                    .then((res2) => {
+                        res.send(res2);
+                    })
+                    .catch((err2) => {
+                        res.send(err2);
+                    });
+            })
+            .catch((err) => {
+                res.send(err);
+            });
+    } catch (error) {
+        return res.send(`Error when trying upload images: ${error}`);
+    }
 };
 
 exports.findOne = (req, res) => {
@@ -50,6 +58,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     Cars.update(
         {
+            image: req.file ? req.file.path : undefined,
             name: req.body.name,
             doors: req.body.doors,
             seats: req.body.seats,

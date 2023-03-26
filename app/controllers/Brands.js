@@ -11,7 +11,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    Brands.create({ name: req.body.name })
+    Brands.create({ name: req.body.name, image: req.file ? req.file.path : undefined })
         .then((res1) => {
             Brands.findByPk(res1.id)
                 .then((res2) => {
@@ -40,7 +40,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     Brands.update(
-        { name: req.body.name },
+        { name: req.body.name, image: req.file ? req.file.path : undefined },
         {
             where: { id: req.params.id },
         }

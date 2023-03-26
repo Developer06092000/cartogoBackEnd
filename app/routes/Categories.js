@@ -1,4 +1,4 @@
-const verifyToken = require("../controllers/verifyToken.js");
+const verifyToken = require("../middleware/verifyToken.js");
 
 module.exports = (app) => {
     const Categories = require("../controllers/Categories.js");
@@ -78,6 +78,8 @@ module.exports = (app) => {
      *      post:
      *          summary: Create a new category
      *          tags: [Categories]
+     *          security:
+     *              - bearerAuth: []
      *          requestBody:
      *              required: true
      *              content:
@@ -109,6 +111,8 @@ module.exports = (app) => {
      *      put:
      *          summary: Update the category by id
      *          tags: [Categories]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -148,6 +152,8 @@ module.exports = (app) => {
      *      patch:
      *          summary: Update the category by id
      *          tags: [Categories]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
@@ -187,6 +193,8 @@ module.exports = (app) => {
      *      delete:
      *          summary: Remove the category by id
      *          tags: [Categories]
+     *          security:
+     *              - bearerAuth: []
      *          parameters:
      *            - in: path
      *              name: id
