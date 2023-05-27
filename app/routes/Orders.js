@@ -313,11 +313,23 @@ module.exports = (app) => {
      *                  description: Some server error
      */
 
-    router.post("/", verifyToken, Orders.create);
+    //
+    // verification  routes
+    //
+
+    // router.post("/", verifyToken, Orders.create);
+    // router.get("/", Orders.findAll);
+    // router.get("/:id/", Orders.findOne);
+    // router.put("/:id/", verifyToken, Orders.update);
+    // router.patch("/:id/", verifyToken, Orders.update);
+    // router.delete("/:id/", verifyToken, Orders.delete);
+
+    router.post("/", Orders.create);
     router.get("/", Orders.findAll);
     router.get("/:id/", Orders.findOne);
-    router.put("/:id/", verifyToken, Orders.update);
-    router.patch("/:id/", verifyToken, Orders.update);
-    router.delete("/:id/", verifyToken, Orders.delete);
+    router.put("/:id/", Orders.update);
+    router.patch("/:id/", Orders.update);
+    router.delete("/:id/", Orders.delete);
+
     app.use("/orders", router);
 };

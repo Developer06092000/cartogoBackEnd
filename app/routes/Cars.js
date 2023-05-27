@@ -398,9 +398,9 @@ module.exports = (app) => {
 
     router.get("/", Cars.findAll);
     router.get("/:id/", Cars.findOne);
-    router.post("/", verifyToken, uploadFile.single("image"), Cars.create);
-    router.put("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
-    router.patch("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
-    router.delete("/:id/", verifyToken, Cars.delete);
+    router.post("/", uploadFile.single("image"), Cars.create);
+    router.put("/:id/", uploadFile.single("image"), Cars.update);
+    router.patch("/:id/", uploadFile.single("image"), Cars.update);
+    router.delete("/:id/", Cars.delete);
     app.use("/cars", router);
 };
