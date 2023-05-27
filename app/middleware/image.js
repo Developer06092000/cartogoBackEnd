@@ -11,7 +11,8 @@ const imageFilter = (req, file, cb) => {
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         // cb(null, "D:\\Web\\NodeJs\\cartogoBackEnd" + "/app/media/images")
-        cb(null, "https://developer0609-carto-go-nodejs.herokuapp.com" + "/app/media/images");
+        // cb(null, "https://developer0609-carto-go-nodejs.herokuapp.com" + "/app/media/images");
+        cb(null, "https://cartogo.onrender.com" + "/app/media/images");
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
