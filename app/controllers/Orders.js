@@ -1,4 +1,6 @@
 const db = require("../models");
+const config = require("../config/config");
+const jwt = require("jsonwebtoken");
 
 const Order = db.Orders;
 
@@ -10,15 +12,62 @@ exports.findAll = (req, res) => {
         .catch((err) => console.log(err));
 };
 
+// exports.create = (req, res) => {
+//     let order = {
+//         name: req.body.name,
+//         email: req.body.email,
+//         phone: req.body.phone,
+//         description: req.body.description,
+//         start_time: req.body.time,
+//         end_time: req.body.time,
+//         start_day: req.body.start_day,
+//         end_day: req.body.end_day,
+//         carId: req.body.carId,
+//     };
+//     jwt.sign(order, config.verifyKey, (err, token) => {
+//         if (err) res.send(err);
+//         console.log(1);
+//         let transporter = nodemailer.createTransport({
+//             service: "Gmail",
+//             auth: {
+//                 user: config.email,
+//                 pass: config.emailPassword,
+//             },
+//         });
+//         console.log(2);
+
+//         let mailOptions = {
+//             from: config.email,
+//             to: req.body.email,
+//             subject: "Order",
+//             html: `<button><a href="http://localhost:8080/auth/verify/?token=${token}">Active Link</a></button>`,
+//         };
+
+//         transporter.sendMail(mailOptions, function (error, info) {
+//             if (error) {
+//                 res.send(error);
+//             } else {
+//                 res.send(`Message sending your ${req.body.email}.`);
+//             }
+//         });
+//     });
+// };
+
 exports.create = (req, res) => {
+    // jwt.verify(req.query.token, config.verifyKey, (err, auth) => {
+    //     if (err) res.send(err);
+    // });
     Order.create({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        answered: req.body.answered,
-        description: req.body.description,
-        telegramId: req.body.telegramId,
-        carId: req.body.carId,
+        name: auth.name,
+        email: auth.email,
+        phone: auth.phone,
+        description: auth.description,
+        start_time: auth.time,
+        end_time: auth.time,
+        start_day: auth.start_day,
+        end_day: auth.end_day,
+        carId: auth.carId,
+        status: true,
     })
         .then((res1) => {
             Order.findByPk(res1.id)
@@ -52,9 +101,12 @@ exports.update = (req, res) => {
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
-            answered: req.body.answered,
+            status: req.body.status,
             description: req.body.description,
-            telegramId: req.body.telegramId,
+            start_time: req.body.start_time,
+            end_time: req.body.end_time,
+            start_day: req.body.start_day,
+            end_day: req.body.end_day,
             carId: req.body.carId,
         },
         {

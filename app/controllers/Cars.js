@@ -1,6 +1,32 @@
 const db = require("../models");
 
 const Cars = db.Cars;
+const Order = db.Orders;
+
+exports.findTime = (req, res) => {
+    Order.findAll({ raw: true })
+        .then((res1) => {
+            console.log(res1);
+            let data = res1.filter(
+                (item) =>
+                    item.start_day === req.query.start_day ||
+                    item.end_day === req.query.end_day ||
+                    item.start_day === req.query.end_day ||
+                    item.end_day === req.query.start_day
+            );
+            Cars.findAll({ raw: true })
+                .then((res2) => {
+                    if (data.length === 0) {
+                        res.send(res2);
+                    } else {
+                        let data1 = res2.filter((item) => data.every((d) => d.carId !== item.id));
+                        res.send(data1);
+                    }
+                })
+                .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+};
 
 exports.findAll = (req, res) => {
     Cars.findAll({ raw: true })

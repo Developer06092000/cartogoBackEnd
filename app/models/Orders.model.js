@@ -18,15 +18,35 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             defaultValue: "",
         },
-        answered: {
+        // answered: {
+        //     type: Sequelize.BOOLEAN,
+        //     defaultValue: false,
+        // },
+        status: {
             type: Sequelize.BOOLEAN,
             defaultValue: false,
         },
-        telegramId: {
+        // telegramId: {
+        //     type: Sequelize.STRING,
+        //     defaultValue: "",
+        // },
+        description: {
             type: Sequelize.STRING,
             defaultValue: "",
         },
-        description: {
+        start_time: {
+            type: Sequelize.STRING,
+            defaultValue: "",
+        },
+        end_time: {
+            type: Sequelize.STRING,
+            defaultValue: "",
+        },
+        start_day: {
+            type: Sequelize.STRING,
+            defaultValue: "",
+        },
+        end_day: {
             type: Sequelize.STRING,
             defaultValue: "",
         },

@@ -317,19 +317,13 @@ module.exports = (app) => {
     // verification  routes
     //
 
-    // router.post("/", verifyToken, Orders.create);
-    // router.get("/", Orders.findAll);
-    // router.get("/:id/", Orders.findOne);
-    // router.put("/:id/", verifyToken, Orders.update);
-    // router.patch("/:id/", verifyToken, Orders.update);
-    // router.delete("/:id/", verifyToken, Orders.delete);
-
+    // router.post("/verify/", Orders.verify);
     router.post("/", Orders.create);
     router.get("/", Orders.findAll);
     router.get("/:id/", Orders.findOne);
-    router.put("/:id/", Orders.update);
-    router.patch("/:id/", Orders.update);
-    router.delete("/:id/", Orders.delete);
+    router.put("/:id/", verifyToken, Orders.update);
+    router.patch("/:id/", verifyToken, Orders.update);
+    router.delete("/:id/", verifyToken, Orders.delete);
 
     app.use("/orders", router);
 };

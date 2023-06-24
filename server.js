@@ -12,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 async function sequelize() {
     await db.sequelize
-        .sync({ force: true })
+        .sync()
+        // .sync({ force: true })
         .then(() => {
             console.log("Synced db.");
         })
@@ -20,31 +21,31 @@ async function sequelize() {
             console.log("Failed to sync db: " + err.message);
         });
 
-    const options = {
-        definition: {
-            openapi: "3.0.0",
-            info: {
-                title: "Rent car backend",
-                version: "1.0.0",
-                description: "Rent car backend API",
-            },
-            // servers: [
-            //     {
-            //         url: "http://localhost:8080",
-            //     },
-            // ]
-        },
-        apis: ["./app/routes/*.js"],
-    };
+    // const options = {
+    //     definition: {
+    //         openapi: "3.0.0",
+    //         info: {
+    //             title: "Rent car backend",
+    //             version: "1.0.0",
+    //             description: "Rent car backend API",
+    //         },
+    //         // servers: [
+    //         //     {
+    //         //         url: "http://localhost:8080",
+    //         //     },
+    //         // ]
+    //     },
+    //     apis: ["./app/routes/*.js"],
+    // };
 
-    const specs = swaggerJsDoc(options);
-    app.get("/", (req, res) => {
-        res.redirect("/api/");
-    });
-    app.use("/api", swaggerUI.serve, swaggerUI.setup(specs));
+    // const specs = swaggerJsDoc(options);
+    // app.get("/", (req, res) => {
+    //     res.redirect("/api/");
+    // });
+    // app.use("/api", swaggerUI.serve, swaggerUI.setup(specs));
 
-    require("./app/routes/Brands.js")(app);
-    require("./app/routes/Categories.js")(app);
+    // require("./app/routes/Brands.js")(app);
+    // require("./app/routes/Categories.js")(app);
     require("./app/routes/Cars.js")(app);
     require("./app/routes/Orders.js")(app);
     require("./app/routes/auth.js")(app);

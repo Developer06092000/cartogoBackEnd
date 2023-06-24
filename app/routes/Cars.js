@@ -396,11 +396,12 @@ module.exports = (app) => {
      *                  description: Some server error
      */
 
-    router.get("/", Cars.findAll);
+    // router.get("/", Cars.findAll);
+    router.get("/", Cars.findTime);
     router.get("/:id/", Cars.findOne);
-    router.post("/", uploadFile.single("image"), Cars.create);
-    router.put("/:id/", uploadFile.single("image"), Cars.update);
-    router.patch("/:id/", uploadFile.single("image"), Cars.update);
-    router.delete("/:id/", Cars.delete);
+    router.post("/", verifyToken, uploadFile.single("image"), Cars.create);
+    router.put("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
+    router.patch("/:id/", verifyToken, uploadFile.single("image"), Cars.update);
+    router.delete("/:id/", verifyToken, Cars.delete);
     app.use("/cars", router);
 };

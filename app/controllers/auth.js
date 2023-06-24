@@ -6,6 +6,28 @@ const nodemailer = require("nodemailer");
 
 const Users = db.Users;
 
+setTimeout(() => {
+    Users.findOne({ where: { username: "admin01" } }).then((res) => {
+        if (!res) {
+            let salt = bcrypt.genSaltSync(config.genSalt).valueOf();
+            let password = bcrypt.hashSync("123", salt).valueOf();
+            let user = {
+                username: "admin01",
+                password: password,
+                email: "",
+                role: "superuser",
+            };
+            Users.create(user)
+                .then((res1) => {
+                    console.log("admin01 created");
+                })
+                .catch((err) => {
+                    res.send(err);
+                });
+        }
+    });
+}, [1000]);
+
 exports.create = (req, res) => {
     Users.findOne({ where: { username: req.body.username } })
         .then((res1) => {

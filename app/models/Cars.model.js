@@ -6,6 +6,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             allowNull: false,
         },
+        brand: {
+            type: Sequelize.STRING,
+            defaultValue: "",
+        },
         name: {
             type: Sequelize.STRING,
             defaultValue: "",
