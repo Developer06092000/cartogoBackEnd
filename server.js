@@ -10,6 +10,8 @@ const swaggerJsDoc = require("swagger-jsdoc");
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
+app.use("/app/media/", express.static("./app/media/"));
+
 async function sequelize() {
     await db.sequelize
         .sync()
